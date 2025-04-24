@@ -1,34 +1,53 @@
-import { Button, FileInput, Group, Text } from "@mantine/core";
-import { useState } from "react";
+// src/components/FileUploader.tsx
+import { useCallback } from 'react';
+import { useDropzone } from 'react-dropzone';
+import { Box, Text, Button, Group, Paper } from '@mantine/core';
 
 interface FileUploaderProps {
-    setMarkdown: (markdown: string) => void;
+  setMarkdown: (text: string) => void;
 }
 
 export function FileUploader({ setMarkdown }: FileUploaderProps) {
-    const [file, setFile] = useState<File | null>(null);
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    const file = acceptedFiles[0];
+    if (!file) return;
 
-    const handleReadFile = ()=>{
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            const content = e.target?.result as string;
-            setMarkdown(content);
-        };
-        reader.readAsText(file);
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const text = e.target?.result as string;
+      setMarkdown(text);
     };
-    
-    return (
-        <Group mt="md" grow>
-            <FileInput
-                label="Upload Markdown File"
-                placeholder="Select or Drag file here"
-                accept=".md, .markdown"
-                value={file}
-                onChange={(file) => setFile(file)}
-            />
-            <Button onClick={handleReadFile} disabled={!file}>Load File</Button>
-        </Group>
-    )
+    reader.readAsText(file);
+  }, [setMarkdown]);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: {
+      'text/markdown': ['.md'],
+      'text/plain': ['.txt'],
+    },
+    multiple: false,
+  });
+
+  return (
+    <Paper
+      withBorder
+      p="lg"
+      mt="md"
+      {...getRootProps()}
+      sx={{
+        cursor: 'pointer',
+        backgroundColor: isDragActive ? '#f1f3f5' : 'white',
+        borderStyle: 'dashed',
+        textAlign: 'center',
+      }}
+    >
+      <input {...getInputProps()} />
+      <Text>
+        {isDragActive
+          ? 'Drop your file here...'
+          : 'Click or drag-and-drop a Markdown file (.md or .txt) here'}
+      </Text>
+    </Paper>
+  );
 }

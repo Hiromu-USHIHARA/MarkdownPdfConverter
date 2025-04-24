@@ -14,6 +14,7 @@ export function Editor({ markdown, setMarkdown }: EditorProps) {
             value={markdown}
             onChange={(e) => setMarkdown(e.target.value)}
             minRows={10}
+            maxRows={20}
             autosize
         />
     );
