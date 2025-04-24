@@ -8,14 +8,21 @@ interface EditorProps {
 
 export function Editor({ markdown, setMarkdown }: EditorProps) {
     return (
-        <Textarea
-            label="Markdown Input"
-            placeholder="Write your markdown here..."
-            value={markdown}
-            onChange={(e) => setMarkdown(e.target.value)}
-            minRows={10}
-            maxRows={20}
-            autosize
-        />
+      <Textarea
+        label="Markdown Input"
+        placeholder="Write your Markdown here..."
+        value={markdown}
+        onChange={(e) => setMarkdown(e.currentTarget.value)}
+        autosize={false}
+        styles={{
+          root: { height: '100%', width: '100%' },
+          input: {
+            minHeight: '60vh',
+            fontFamily: 'monospace',
+            fontSize: '14px',
+          },
+        }}
+      />
     );
-}
+  }
+  

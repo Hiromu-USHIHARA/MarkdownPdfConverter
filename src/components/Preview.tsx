@@ -7,20 +7,32 @@ interface PreviewProps {
 }
 
 export function Preview({ markdown }: PreviewProps) {
-  const html = renderMarkdownToHtml(markdown);
-
-  useEffect(() => {
-    if (window.MathJax && window.MathJax.typesetPromise) {
-      window.MathJax.typesetPromise();
-    }
-  }, [html]);
-
-  return (
-    <Paper withBorder p="md" mt="md">
-      <div
-        id="preview"
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
-    </Paper>
-  );
-}
+    const html = renderMarkdownToHtml(markdown);
+  
+    useEffect(() => {
+      const timeout = setTimeout(() => {
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          window.MathJax.typesetPromise();
+        }
+      }, 100);
+      return () => clearTimeout(timeout);
+    }, [html]);
+  
+    return (
+      <Paper
+        withBorder
+        p="md"
+        style={{
+          width: '100%',
+          minHeight: '60vh',
+          overflowX: 'auto',
+        }}
+      >
+        <div
+          id="preview"
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+      </Paper>
+    );
+  }
+  
