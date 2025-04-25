@@ -2,6 +2,10 @@
 
 A web application that converts Markdown text to PDF. It also supports mathematical expressions.
 
+## Use Online
+
+You can use the application online at: [https://markdown-pdf-converter-7ra8ygzp2-hiromu-ushiharas-projects.vercel.app](https://markdown-pdf-converter-7ra8ygzp2-hiromu-ushiharas-projects.vercel.app)
+
 ## Features
 
 - Real-time Markdown preview
@@ -18,7 +22,7 @@ A web application that converts Markdown text to PDF. It also supports mathemati
 - MathJax
 - Mantine UI
 
-## Installation
+## How to Run Locally
 
 ```bash
 # Clone the repository
