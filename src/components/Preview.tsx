@@ -6,15 +6,33 @@ interface PreviewProps {
   markdown: string;
 }
 
+declare global {
+  interface Window {
+    MathJax: {
+      typesetPromise: () => Promise<void>;
+      startup: {
+        promise: Promise<void>;
+      };
+    };
+  }
+}
+
 export function Preview({ markdown }: PreviewProps) {
     const html = renderMarkdownToHtml(markdown);
   
     useEffect(() => {
-      const timeout = setTimeout(() => {
-        if (window.MathJax && window.MathJax.typesetPromise) {
-          window.MathJax.typesetPromise();
+      const renderMath = async () => {
+        if (window.MathJax) {
+          try {
+            await window.MathJax.startup.promise;
+            await window.MathJax.typesetPromise();
+          } catch (error) {
+            console.error('MathJax rendering error:', error);
+          }
         }
-      }, 100);
+      };
+
+      const timeout = setTimeout(renderMath, 100);
       return () => clearTimeout(timeout);
     }, [html]);
   
@@ -42,5 +60,5 @@ export function Preview({ markdown }: PreviewProps) {
         </Paper>
       </div>
     );
-  }
+}
   

@@ -15,6 +15,19 @@ export function FileExporter({ markdown }: FileExporterProps) {
             scale: 2, // 高解像度でキャプチャ
             useCORS: true,
             logging: false,
+            onclone: (clonedDoc) => {
+                // 数式のスタイルを調整
+                const mathElements = clonedDoc.querySelectorAll('.MathJax');
+                mathElements.forEach((element) => {
+                    if (element instanceof HTMLElement) {
+                        const style = element.style;
+                        style.display = 'inline';
+                        style.margin = '0';
+                        style.padding = '0';
+                        style.lineHeight = '1';
+                    }
+                });
+            }
         });
 
         const imgData = canvas.toDataURL("image/png");
