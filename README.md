@@ -1,9 +1,9 @@
 # Markdown to PDF Converter
 
-A web application that to edit Mrkdown and convert it to PDF. It also supports mathematical expressions.
+A web application to edit Markdown and convert it to PDF. It also supports mathematical expressions.
 
 <p align="center">
-  <img src="MarkdownPdfConverterSnapshot.png" alt="Snapshot of Demo" width="600"/>
+  <img src="MarkdownPdfConverterSnapshot.png" alt="Snapshot of Demo" width="800"/>
 </p>
 
 
