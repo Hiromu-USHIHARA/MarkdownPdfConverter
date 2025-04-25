@@ -11,7 +11,6 @@ export function renderMarkdownToHtml(markdown: string): string {
   const processedMarkdown = markdown.replace(
     /(\$\$|\\\[)([\s\S]*?)(\$\$|\\\])/g,
     (match, start, content, end) => {
-      // 数式の前後に改行を追加
       return `\n<div style="text-align: center;">$${content}$</div>\n`;
     }
   );
