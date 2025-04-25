@@ -15,11 +15,16 @@ export function Editor({ markdown, setMarkdown }: EditorProps) {
         onChange={(e) => setMarkdown(e.currentTarget.value)}
         autosize={false}
         styles={{
-          root: { height: '100%', width: '100%' },
+          root: { 
+            height: '100%', 
+            width: '100%',
+            maxWidth: '50vw'
+          },
           input: {
             minHeight: '60vh',
             fontFamily: 'monospace',
             fontSize: '14px',
+            width: '90%'
           },
         }}
       />

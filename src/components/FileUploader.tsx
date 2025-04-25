@@ -35,19 +35,28 @@ export function FileUploader({ setMarkdown }: FileUploaderProps) {
       p="lg"
       mt="md"
       {...getRootProps()}
-      sx={{
+      style={{
         cursor: 'pointer',
         backgroundColor: isDragActive ? '#f1f3f5' : 'white',
         borderStyle: 'dashed',
         textAlign: 'center',
+        transition: 'background-color 0.2s ease',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.backgroundColor = '#f8f9fa';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.backgroundColor = isDragActive ? '#f1f3f5' : 'white';
       }}
     >
       <input {...getInputProps()} />
-      <Text>
-        {isDragActive
-          ? 'Drop your file here...'
-          : 'Click or drag-and-drop a Markdown file (.md or .txt) here'}
-      </Text>
+      <Group align="center" gap="xs">
+        <Text size="sm" color={isDragActive ? 'blue' : 'gray'}>
+          {isDragActive
+            ? 'Drop your file here...'
+            : 'Click or drag-and-drop a Markdown file (.md or .txt) here'}
+        </Text>
+      </Group>
     </Paper>
   );
 }

@@ -5,7 +5,7 @@ import { MantineProvider } from '@mantine/core';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <MantineProvider withGlobalStyles withNormalizeCSS>
+    <MantineProvider defaultColorScheme="light">
       <App />
     </MantineProvider>
   </React.StrictMode>

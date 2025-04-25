@@ -2,15 +2,17 @@ import { Container, Title, Group, Center, Flex } from "@mantine/core";
 import { useState } from "react";
 import { Editor } from "./components/Editor";
 import { Preview } from "./components/Preview";
-import { PdfExporter } from "./components/PdfExporter";
+import { FileExporter } from "./components/PdfExporter";
 import { FileUploader } from "./components/FileUploader";
 
 function App() {
     const [markdown, setMarkdown] = useState<string>("");
 
     return (
-      <Container size="md" p="md">
-        <Title order={2} align="center" mb="md">Markdown to PDF Converter</Title>
+      <Container size="xl" p="md" style={{ maxWidth: '100%' }}>
+        <Center>
+          <Title order={2} ta="center" mb="md">Markdown to PDF Converter</Title>
+        </Center>
         <Center>
           <FileUploader setMarkdown={setMarkdown} />
         </Center>
@@ -18,20 +20,21 @@ function App() {
         <Flex
           mt="lg"
           gap="lg"
-          justify="center"
-          align="start"
-          direction={{ base: 'column', md: 'row' }} // ← モバイルで縦, md以上で横
+          justify="space-between"
+          align="stretch"
+          direction={{ base: 'column', md: 'row' }}
+          style={{ width: '100%', display: 'flex' }}
         >
-          <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ flex: '110', minWidth: 0, width: '100%' }}>
             <Editor markdown={markdown} setMarkdown={setMarkdown} />
           </div>
-          <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ flex: '110', minWidth: 0, width: '100%' }}>
             <Preview markdown={markdown} />
           </div>
         </Flex>
 
         <Center mt="lg">
-          <PdfExporter />
+          <FileExporter markdown={markdown} />
         </Center>
       </Container>
     );
