@@ -36,6 +36,15 @@ function App() {
         <Center mt="lg">
           <FileExporter markdown={markdown} />
         </Center>
+
+        <a
+          href="https://github.com/Hiromu-USHIHARA/MarkdownPdfConverter.git"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="github-link"
+        >
+          GitHub Repository
+        </a>
       </Container>
     );
 }
