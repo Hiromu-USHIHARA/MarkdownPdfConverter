@@ -1,4 +1,4 @@
-import { Container, Title, Group, Center, Flex } from "@mantine/core";
+import { Container, Title, Center, Flex } from "@mantine/core";
 import { useState } from "react";
 import { Editor } from "./components/Editor";
 import { Preview } from "./components/Preview";
