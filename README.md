@@ -4,7 +4,7 @@ A web application that converts Markdown text to PDF. It also supports mathemati
 
 ## Use Online
 
-You can use the application online at: [https://markdown-pdf-converter-7ra8ygzp2-hiromu-ushiharas-projects.vercel.app](https://markdown-pdf-converter-7ra8ygzp2-hiromu-ushiharas-projects.vercel.app)
+You can use the application online at: [https://markdown-pdf-converter-hiromu-ushiharas-projects.vercel.app/](https://markdown-pdf-converter-hiromu-ushiharas-projects.vercel.app/)
 
 ## Features
 
